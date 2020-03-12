@@ -1,0 +1,87 @@
+#include <iostream>
+using namespace std;
+
+struct Brutus{
+    int fome = 5;
+    int energia = 3;
+    int banheiro = 0;
+    int alguem = 1;
+
+    bool atacar(){
+        if (this->alguem>0){
+            cout << "brutus desmembrou a pessoa\n\n";
+            this->alguem -= 1;
+            return true;
+        }
+        cout << "brutus esta deitado dormindo\n\n";
+        this->energia += 1;
+        return false;
+    }
+
+    bool comer(){
+        if(this->fome>0){
+            this->fome -= 1;
+            cout << "comendo\n\n";
+            this->banheiro += 1;
+            return true;
+        }
+            cout << "brutus nao esta com sede de sangue\n\n";
+            return false;
+    }
+    
+    bool cagar(){
+        if(this->banheiro>0){
+            this->banheiro -= 1;
+            cout << "fazendo as nessecidades\n\n";
+            return true;
+        }
+        cout << "brutus nao esta com vontade\n\n";
+        return false;
+    }
+    bool brincar(){
+        if(this->energia>0 && this->fome<3){
+            cout << "brincando\n\n";
+            this->energia -= 1;
+            return true;
+        }
+        cout << "brutus nao esta com disposicao suficiente para brincar\n\n";
+        return false;
+    }
+    
+    bool dormir(){
+        if(this->energia<3 && this->energia<5){
+            cout << "dormindo\n\n";
+            this->energia += 1;
+            return true;
+        }
+        cout << "brutus nao esta com sono\n\n";
+        return false;
+    }
+};
+
+int main() {
+    Brutus * brutus = new Brutus();
+    cout << brutus->energia << "\n\n";
+    brutus->brincar();
+    brutus->comer();
+    brutus->comer();
+    brutus->comer();
+    brutus->brincar();
+    cout << brutus->banheiro << "\n\n";
+    cout << brutus->energia << "\n\n";
+    brutus->dormir();
+    brutus->dormir();
+    brutus->cagar();
+    brutus->cagar();
+    cout << brutus->banheiro << "\n\n";
+    brutus->brincar();
+    brutus->atacar();
+    brutus->atacar();
+    brutus->brincar();
+    cout << brutus->fome << "\n\n";
+    cout << brutus->energia << "\n\n";
+    cout << brutus->banheiro << "\n\n";
+    cout << brutus->alguem << "\n\n";
+    return 0;
+}
+
